@@ -1,0 +1,122 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="plrsc"></p>
+    <p id="ccsc"></p>
+    <button id="rock">rock</button>
+    <button id="papper">papper</button>
+    <button id="scissor">scissor</button>
+    <button id="restart">new round</button>
+    <div id="scoreboard"></div>
+
+    <script>
+    const rockbut = document.querySelector("#rock")
+    const papbut = document.querySelector("#papper")
+    const scisbut = document.querySelector("#scissor")
+    const scoreboard = document.querySelector("#scoreboard")
+    const resetbut = document.querySelector("#restart")
+
+    const choices = ["rock", "papper", "scissor"]
+
+    function game(){
+        playround()
+    }
+
+    rockbut.addEventListener("click", () => {
+        const rock = "rock"
+        playround(rock)
+    })
+
+    papbut.addEventListener("click", () => {
+        const papper = "papper"
+        playround(papper)
+    })
+
+    scisbut.addEventListener("click", () => {
+        const scissor = "scissor"
+        playround(scissor)
+    })
+
+    function playround(choiceplr){
+        const playerselection = choiceplr
+        const computerselection = computerchoise()
+        const winner = chosewin(playerselection, computerselection)
+    }
+    
+    // function rounds(){
+    //     return prompt("how many rounds do you want?")
+    // }
+
+    // function userounds(nbrn){
+    //     while(nbrn > 0){
+    //         playround()
+    //         nbrn -= 1
+    //     }
+    // }
+    
+    let wincountp = 0
+    let wincountc = 0
+        
+
+    // function playerchoice(){
+    //     let plrch = prompt("choice");
+    //     while(plrch == null){
+    //         plrch = prompt("choice");
+    //     }
+    //     plrch = plrch.toLowerCase();
+    //     let check = validation(plrch);
+    //     while(check == false){
+    //         plrch = prompt("choice needs to be rock, papper or scissor");
+    //         if(validation(plrch)){
+    //             break
+    //         }
+    //     };
+    //     while(plrch == null){
+    //     plrch = prompt("choice");
+    //     }
+    //     plrch = plrch.toLowerCase();
+    //     check = validation(plrch);
+    //     return plrch;
+    // }
+
+    function computerchoise(){
+        let teik = choices[Math.floor(Math.random() * choices.length)]
+        console.log(teik);
+        return teik
+    }
+
+    function validation(input){
+     return choices.includes(input)   
+    }
+
+    function chosewin(pc, cc){
+        if(wincountc != 5 && wincountp != 5){    
+            if((pc === "rock" && cc == "scissor")||(pc === "scissor" && cc =="papper")||(pc === "papper" && cc == "rock")){
+                wincountp += 1
+                scoreboard.textContent = "player: " + wincountp + " computer: " + wincountc
+            }
+            else if ((cc === "rock" && pc == "scissor")||(cc === "scissor" && pc == "papper")||(cc === "papper" && pc == "rock")){
+                wincountc += 1
+                scoreboard.textContent = "player: " + wincountp + " computer: " + wincountc
+            }}
+        else if(wincountc = 5) {
+            scoreboard.textContent = "the computer won"
+        }
+        else{
+            scoreboard.textContent = "the player won"
+        }
+    }
+    scoreboard.textContent = "player: " + wincountp + " computer: " + wincountc 
+
+    resetbut.addEventListener("click", () => {
+        wincountc = 0
+        wincountp = 0
+        scoreboard.textContent = "player: " + wincountp + " computer: " + wincountc 
+    })
+    </script>
+</body>
+</html>
