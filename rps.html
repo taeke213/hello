@@ -93,24 +93,25 @@
      return choices.includes(input)   
     }
 
-    function chosewin(pc, cc){
-        if(wincountc != 5 && wincountp != 5){    
+    function chosewin(pc, cc){      
             if((pc === "rock" && cc == "scissor")||(pc === "scissor" && cc =="papper")||(pc === "papper" && cc == "rock")){
-                wincountp += 1
-                scoreboard.textContent = "player: " + wincountp + " computer: " + wincountc
+                    wincountp += 1
+                    scoreboard.textContent = "player: " + wincountp + " computer: " + wincountc
+                }
+                else if ((cc === "rock" && pc == "scissor")||(cc === "scissor" && pc == "papper")||(cc === "papper" && pc == "rock")){
+                    wincountc += 1
+                    scoreboard.textContent = "player: " + wincountp + " computer: " + wincountc
+                }
+            if(wincountc === 5){
+                scoreboard.textContent = "the computer won"
             }
-            else if ((cc === "rock" && pc == "scissor")||(cc === "scissor" && pc == "papper")||(cc === "papper" && pc == "rock")){
-                wincountc += 1
-                scoreboard.textContent = "player: " + wincountp + " computer: " + wincountc
-            }}
-        else if(wincountc = 5) {
-            scoreboard.textContent = "the computer won"
-        }
-        else{
-            scoreboard.textContent = "the player won"
-        }
+            else if(wincountp === 5){
+                scoreboard.textContent = "the player won"
+            }
     }
-    scoreboard.textContent = "player: " + wincountp + " computer: " + wincountc 
+scoreboard.textContent = "player: " + wincountp + " computer: " + wincountc 
+
+
 
     resetbut.addEventListener("click", () => {
         wincountc = 0
